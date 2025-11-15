@@ -1,0 +1,33 @@
+# Source files
+src/
+*.ts
+!*.d.ts
+
+# Development
+tsconfig.json
+.git
+.gitignore
+.vscode
+.idea
+
+# Testing
+test-project/
+tests/
+*.test.js
+*.spec.js
+
+# Build artifacts
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Documentation (keep README.md)
+docs/
+*.md
+!README.md
+
+# Misc
+.DS_Store
+.env
+*.log
+coverage/
