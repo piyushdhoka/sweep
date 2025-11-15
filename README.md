@@ -6,7 +6,7 @@
 </div>	 
 	
 <p>Fast zero-config CLI to list and clean unused JS/TS imports.</p>	
-<a href="https://www.npmjs.com/package/sweep"><img src="https://img.shields.io/npm/v/sweepp" alt="Current version"></a>
+<a href="https://www.npmjs.com/package/sweepo"><img src="https://img.shields.io/npm/v/sweepp" alt="Current version"></a>
 	<a href="https://github.com/piyushdhoka/sweep"><img src="https://img.shields.io/github/stars/piyushdhoka/sweep" alt="GitHub stars"></a>
 	<a href="https://github.com/piyushdhoka/sweep/blob/main/LICENSE"><img src="https://img.shields.io/npm/l/sweepp" alt="License"></a>
 </div>
