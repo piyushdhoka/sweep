@@ -120,8 +120,14 @@ async function run() {
 
   program.command('version').description('Show version').action(() => console.log(program.version()));
 
-  // default to list if no subcommand
-  if (process.argv.length <= 2) process.argv.push('list');
+  // default to list if no subcommand or if first arg looks like a path/target
+  if (process.argv.length <= 2) {
+    process.argv.push('list');
+  } else if (process.argv.length === 3 && !['list', 'clean', 'version'].includes(process.argv[2])) {
+    // If single argument and it's not a known command, treat it as "list <target>"
+    process.argv.splice(2, 0, 'list');
+  }
+  
   program.parseAsync(process.argv).catch(err => {
     console.error(chalk.red('Unexpected error:'), err);
     process.exit(1);

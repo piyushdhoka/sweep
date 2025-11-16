@@ -22,15 +22,15 @@ Large JavaScript/TypeScript codebases accumulate **dead imports** after refactor
 **sweepp** gives you a single lightweight command instead of heavy lint setups.
 
 ## Features (minimal)
-- 🚀 Zero config – run instantly
-- 🔍 List unused import specifiers (TS/JS/JSX/TSX)
-- 🧹 Safe clean mode removes them
-- 📊 Structured table output for easy viewing
-- ⚡ Fast AST parsing (Babel; SWC planned)
-- 🎯 Keeps side-effect imports (`import 'polyfill';`)
-- 🔗 Support for path aliases (`@/components`, `src/...`)
-- ✅ Optionally check if local imports exist in project
-- 📦 **Monorepo support** (pnpm workspaces, npm/yarn workspaces, Turborepo)
+- Zero config – run instantly
+- List unused import specifiers (TS/JS/JSX/TSX)
+- Safe clean mode removes them
+- Structured table output for easy viewing
+- Fast AST parsing (Babel; SWC planned)
+- Keeps side-effect imports (`import 'polyfill';`)
+- Support for path aliases (`@/components`, `src/...`)
+- Optionally check if local imports exist in project
+- **Monorepo support** (pnpm workspaces, npm/yarn workspaces, Turborepo)
 
 ## Install
 ```bash
@@ -40,28 +40,36 @@ npm install --save-dev sweepp
 ```
 
 ## Usage
-Global command: `sweepp`
+Global commands: `sweepp` or `swp` (shorthand)
 ```bash
 # List unused imports (default)
 sweepp .
+# or use the shorthand
+swp .
 
 # Explicit list subcommand (same as default)
 sweepp list .
+swp list .
 
 # List with local import checking (removes imports from non-existent files)
 sweepp list . --check-local
+swp list . --check-local
 
 # Clean unused imports (modifies files)
 sweepp clean .
+swp clean .
 
 # Clean with local import checking
 sweepp clean . --check-local
+swp clean . --check-local
 
 # Set extensions / ignores
 sweepp list . --ext ts,tsx,js --ignore dist,build
+swp list . --ext ts,tsx,js --ignore dist,build
 
 # Show version
 sweepp version
+swp version
 ```
 
 ## Options

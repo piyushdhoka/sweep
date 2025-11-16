@@ -1,16 +1,16 @@
 {
   "name": "sweepp",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "Zero-config fast CLI to sweep unused JS/TS imports across a project with monorepo support.",
   "license": "MIT",
   "author": "Piyush Dhoka",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/sweepp.git"
+    "url": "https://github.com/piyushdhoka/sweep.git"
   },
-  "homepage": "https://github.com/yourusername/sweepp#readme",
+  "homepage": "https://github.com/piyushdhoka/sweep#readme",
   "bugs": {
-    "url": "https://github.com/yourusername/sweepp/issues"
+    "url": "https://github.com/piyushdhoka/sweep/issues"
   },
   "type": "commonjs",
   "main": "dist/analyzer.js",
@@ -21,7 +21,8 @@
     "LICENSE"
   ],
   "bin": {
-    "sweepp": "dist/cli.js"
+    "sweepp": "dist/cli.js",
+    "swp": "dist/cli.js"
   },
   "scripts": {
     "build": "tsc -p .",
