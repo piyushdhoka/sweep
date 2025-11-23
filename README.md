@@ -11,75 +11,213 @@
 	<a href="https://github.com/piyushdhoka/sweep/blob/main/LICENSE"><img src="https://img.shields.io/npm/l/sweepp" alt="License"></a>
 </div>
 
+  ---
 
-## Why?
-Large JavaScript/TypeScript codebases accumulate **dead imports** after refactors:
-- Reduce readability
-- Add bundle bloat
-- Slow IDE features
-- Cause noisy warnings
+  ## Setup
 
-**sweepp** gives you a single lightweight command instead of heavy lint setups.
+  > The minimum supported version of Node.js is v18. Check your Node.js version with `node --version`.
 
-## Features (minimal)
-- Zero config – run instantly
-- List unused import specifiers (TS/JS/JSX/TSX)
-- Safe clean mode removes them
-- Detect unused code candidates (functions, classes, variables, types, interfaces) – non destructive preview
-- Structured table output for easy viewing
-- Fast AST parsing (Babel; SWC planned)
-- Keeps side-effect imports (`import 'polyfill';`)
-- Support for path aliases (`@/components`, `src/...`)
-- Optionally check if local imports exist in project
-- **Monorepo support** (pnpm workspaces, npm/yarn workspaces, Turborepo)
+  1. Install sweepp:
 
-## Install
-```bash
-npm install -g sweepp
-# or
-npm install --save-dev sweepp
-```
+    ```sh
+    npm install -g sweepp
+    # or
+    npm install --save-dev sweepp
+    ```
 
-## Usage
+  ### Install via Homebrew (macOS/Linux)
 
-### Short commands
+  Install via Homebrew tap:
 
-```sh
-sweepp .
-swp
-list
-clean
-unuse
-version
-```
+  ```sh
+  brew tap piyushdhoka/sweep
+  brew install sweepp
+  ```
 
-You can use options with list/clean/unuse:
+  Upgrade:
 
-```sh
-sweepp list . --ext ts,tsx,js --ignore dist,build
-swp list . --ext ts,tsx,js --ignore dist,build
-```
+  ```sh
+  brew update
+  brew upgrade sweepp
+  ```
 
-## Options
-- `--ext <list>` - Comma-separated file extensions (default: `ts,tsx,js,jsx`)
-- `--ignore <list>` - Comma-separated ignore patterns (default: `node_modules`)
-- `--check-local` - Check if local imports exist in project (supports `@/` and path aliases from tsconfig.json/jsconfig.json)
+  2. (Optional) Configure path aliases or monorepo settings in your `tsconfig.json`/`jsconfig.json` for best results.
 
-## Example Output (list)
-```
-Unused Imports Report
+  ### Upgrading
 
-File           Count  Unused Imports
-────────────────────────────────────────────────────────────────────
-src\math.ts    3      useState, useEffect, readFileSync
-src\App.tsx    2      Component, useRef
-────────────────────────────────────────────────────────────────────
+  Check the installed version with:
 
-Summary: 2 file(s) with 5 unused import(s)
-```
+  ```
+  sweepp --version
+  ```
 
-## Example Output (clean)
-```
+  If it's not the latest version, run:
+
+  ```sh
+  npm update -g sweepp
+  ```
+
+  ## Usage
+
+  ### CLI mode
+
+  List unused imports and code:
+
+  ```sh
+  sweepp list .
+  ```
+
+  Clean unused imports:
+
+  ```sh
+  sweepp clean
+  ```
+
+  Detect unused code:
+
+  ```sh
+  sweepp unuse
+  ```
+
+  You can use options with list/clean/unuse:
+
+  ```sh
+  sweepp list . --ext ts,tsx,js --ignore dist,build
+  ```
+
+  #### Options
+
+  - `--ext <list>`: Comma-separated file extensions (default: `ts,tsx,js,jsx`)
+  - `--ignore <list>`: Comma-separated ignore patterns (default: `node_modules`)
+  - `--check-local`: Check if local imports exist in project (supports path aliases)
+
+  #### Short commands
+
+  You can use these aliases:
+
+  - `swp`
+  - `list`
+  - `clean`
+  - `unuse`
+  - `version`
+
+  ## Example Output
+
+  ```
+  Unused Imports Report
+
+  File           Count  Unused Imports
+  ─────────────────────────────────────────────
+  src\math.ts    3      useState, useEffect, readFileSync
+  src\App.tsx    2      Component, useRef
+  ─────────────────────────────────────────────
+  Summary: 2 file(s) with 5 unused import(s)
+  ```
+
+  ## How it works
+
+  sweepp analyzes your codebase using Babel AST parsing to find unused imports and code. It supports monorepos and path aliases, and ignores system folders and `.d.ts` files for accurate results.
+
+  ## Troubleshooting
+
+  ### No unused imports or code detected
+  - Make sure you have supported file types in your project
+  - Check your ignore patterns
+  - Ensure your codebase is staged and accessible
+
+  ### Output includes system folders
+  - Use the `--ignore` option to add more folders if needed
+
+  ### Performance issues
+  - sweepp is optimized for speed, but very large codebases may take longer
+  - Use the `--ext` option to limit file types
+
+  ## Maintainers
+  - **Piyush Dhoka**: [@piyushdhoka](https://github.com/piyushdhoka)
+
+  ## Contributing
+
+  This project is licensed under the Apache-2.0 License - see the [LICENSE](LICENSE) file for details.
+
+
+  - Zero config: run instantly
+  - List unused import specifiers (TS/JS/JSX/TSX)
+  - Safe clean mode removes them
+  - Detect unused code (functions, classes, variables, types, interfaces) with preview
+  - Fast AST parsing (Babel; SWC planned)
+  - Keeps side-effect imports (`import 'polyfill';`)
+  - Path alias support (`@/components`, `src/...`)
+  - Optionally check if local imports exist in project
+  - Monorepo support (pnpm workspaces, npm/yarn workspaces, Turborepo)
+  - Ignores system folders and `.d.ts` files
+
+  ## Install
+
+  ### npm
+  ```sh
+  npm install -g sweepp
+  # or
+  npm install --save-dev sweepp
+  ```
+
+  ### Homebrew (macOS/Linux)
+  ```sh
+  brew tap piyushdhoka/sweep
+  brew install sweepp
+  ```
+
+  ## Usage
+
+  ### Short commands
+  ```sh
+  sweepp
+  swp
+  list
+  clean
+  unuse
+  version
+  ```
+
+  You can use options with list/clean/unuse:
+  ```sh
+  sweepp list . --ext ts,tsx,js --ignore dist,build
+  swp list . --ext ts,tsx,js --ignore dist,build
+  ```
+
+  ## Options
+  - `--ext <list>`: Comma-separated file extensions (default: `ts,tsx,js,jsx`)
+  - `--ignore <list>`: Comma-separated ignore patterns (default: `node_modules`)
+  - `--check-local`: Check if local imports exist in project (supports path aliases from tsconfig.json/jsconfig.json)
+
+  ## Example Output
+  ```
+  Unused Imports Report
+
+  File           Count  Unused Imports
+  ─────────────────────────────────────────────
+  src\math.ts    3      useState, useEffect, readFileSync
+  src\App.tsx    2      Component, useRef
+  ─────────────────────────────────────────────
+  Summary: 2 file(s) with 5 unused import(s)
+  ```
+
+  ## Path Alias & Monorepo Support
+  sweepp auto-detects path aliases from tsconfig.json/jsconfig.json and monorepo setups (pnpm, npm/yarn workspaces, Turborepo).
+
+  ## Exit Codes
+  - `0`: success
+  - `1`: error
+
+  ## Programmatic Use
+  ```ts
+  import { analyzeAndClean } from 'sweepp/dist/analyzer';
+  const result = await analyzeAndClean('src/file.ts', true);
+  console.log(result.removed);
+  - Dynamic usage may evade detection
+  - Side-effect imports are preserved
+  - Heuristic unused code detection: Next.js pages/app route exports treated as used
+  - `.d.ts` files are ignored
+
 ✔ src/utils/math.ts removed: unusedAdd, unusedSub
 ✔ src/components/App.tsx removed: UnusedComponent
 
@@ -101,20 +239,13 @@ sweepp automatically reads `tsconfig.json` or `jsconfig.json` to resolve path al
     }
   }
 }
-```
-
-With this config, imports like `import { Button } from '@/components/Button'` will be correctly resolved and checked for existence.
 
 ## Monorepo Support
-sweepp automatically detects monorepo configurations and resolves workspace imports:
 
 **Supported monorepo types:**
-- **pnpm workspaces** - Detected via `pnpm-workspace.yaml`
-- **npm/yarn workspaces** - Detected via `workspaces` field in `package.json`
 - **Turborepo** - Detected via `turbo.json` (uses underlying workspace config)
 
 **Example pnpm-workspace.yaml:**
-```yaml
 packages:
   - 'packages/*'
   - 'apps/*'
