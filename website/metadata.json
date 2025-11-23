@@ -1,0 +1,5 @@
+{
+  "name": "Sweep Docs",
+  "description": "Documentation site for the Sweep npm package - Zero-config fast CLI to sweep unused JS/TS imports & detect unused code.",
+  "requestFramePermissions": []
+}

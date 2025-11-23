@@ -31,3 +31,4 @@ docs/
 .env
 *.log
 coverage/
+website/
