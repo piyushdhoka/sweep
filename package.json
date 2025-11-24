@@ -1,6 +1,6 @@
 {
   "name": "sweepp",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Zero-config fast CLI to sweep unused JS/TS imports & detect unused code (heuristic) with monorepo support.",
   "license": "MIT",
   "author": "Piyush Dhoka",
@@ -8,7 +8,7 @@
     "type": "git",
     "url": "https://github.com/piyushdhoka/sweep.git"
   },
-  "homepage": "https://github.com/piyushdhoka/sweep#readme",
+  "homepage": "https://sweep-npm.vercel.app/",
   "bugs": {
     "url": "https://github.com/piyushdhoka/sweep/issues"
   },
